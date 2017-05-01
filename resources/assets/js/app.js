@@ -64,6 +64,7 @@ router.beforeEach((to, from, next) => {
 var store = new Vuex.Store({
   state: {
     full_nav_open: false,
+    now_id: 0,
     projects: [
       {
         name: "新境、心境",
@@ -100,7 +101,10 @@ var store = new Vuex.Store({
   mutations: {
     toggle_full_nav (state){
       state.full_nav_open=!state.full_nav_open;
+    },now_id_delta (state,dd){
+      state.now_id=(state.now_id+dd+state.projects.length)%state.projects.length;
     }
+
   },
   actions: {
    

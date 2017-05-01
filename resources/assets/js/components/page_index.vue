@@ -7,9 +7,9 @@
           .proj_image(:style="bg_css(project.img)")
     transition-group(name="fade" mode="out-in")
       .backeng(v-for="p in projects",v-text="p.eng" v-show="id==now_id",:key="p") 
-    .project_next(@click="delta(1)")
+    .project_next(@click="now_id_delta(1)")
       i.fa.fa-angle-right
-    .project_pre(@click="delta(-1)")
+    .project_pre(@click="now_id_delta(-1)")
       i.fa.fa-angle-left
     
 </template>
@@ -17,18 +17,11 @@
 <script>
     import { mapGetter, mapActions , mapState ,mapMutations } from 'vuex';
     export default {
-        data(){
-          return {
-            now_id: 0
-          }
-        },
         mounted() {
             console.log('page index mounted.')
         },
         methods: {
-          delta(dd){
-            this.now_id=(this.now_id+dd+this.projects.length)%this.projects.length;
-          },
+          ...mapMutations(['now_id_delta']),
           bg_css(url){
             return {
               "background-image": "url("+url+")"
@@ -36,7 +29,7 @@
           }
         },
         computed: {
-          ...mapState(["projects"]),
+          ...mapState(["projects","now_id"]),
           pan(){
             return {
               "left": (450-this.now_id*900)+"px"

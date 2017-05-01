@@ -8102,6 +8102,7 @@ p {
   height: 260px;
   background-size: 100% auto;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+  background-position: center center;
   transition: 0.5s 0s;
 }
 
