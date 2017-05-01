@@ -70,7 +70,7 @@ body
 
 #app
   +full
-  max-width: 1280px
+  max-width: 1400px
   margin-left: auto
   margin-right: auto
   position: relative
@@ -226,7 +226,8 @@ p
   display: flex
   color: white
   +ab_center
-  height: 70vh
+  height: 75vh
+  padding-top: 50px
   .cover
     width: 100%
     margin-bottom: 50px
@@ -234,7 +235,9 @@ p
     height: 100%
   .left
     width: 40%
-    padding-left: 100px
+    padding: 0px 15px
+    padding-left: 90px
+
     border-right: solid 1px white
     h1
       font-size: 60px
@@ -246,10 +249,20 @@ p
       width: 60%
   .right
     padding: 10px 20px
-    width: 60%
+    width: 70%
     max-height: 80vh
     overflow-y: scroll
     padding-bottom: 80px
+
+
+  .top
+    padding-bottom: 30px
+  .bottom
+    display: flex
+    flex-direction: row
+    .right
+      height: auto
+      overflow-y: initial
 //------------------
 // index
 
@@ -333,23 +346,92 @@ p
       background-size: 105% auto
 
 
+//-------------------------
+.page_project.project_timemicro,.page_project.project_frame
+  flex-direction: column
+  overflow-y: scroll
+  
 
 //-------------------------
 .page_project.project_story
   flex-direction: column
   overflow-y: scroll
 
-  input
-    background-color: transparent
-    border: none
-    border-bottom: solid 1px white
-    padding: 5px 10px
+  .input_area
+    width: 100%
+    padding-right: 50px
+    vertical-align: middle
+    i.fa.fa-search
+      position: absolute
+      left: 8px
+      top: 50%
+      transform: translateY(-50%)
+
+    input
+      width: 250px
+      background-color: transparent
+      border: none
+      border-bottom: solid 1px white
+      padding: 5px 10px
+      padding-left: 20px
+
+    .float_right
+      float: right
+      select
+        background-color: black
+        color: white
+        padding: 5px 30px
+        width: 100px
+        height: 35px
+        border-radius: 0px
+        margin-left: 10px
+
   .video_container
 
   .video_box
     display: inline-block
     +size(25%,150px)
     cursor: pointer
+    padding: 5px
+    .hover_title
+      +ab_center
+      opacity: 0
+      +trans
+      z-index: 10
+      font-size: 16px
+    
+    &:before
+      content: ""
+      display: block
+      position: absolute
+      left: 0
+      top: 0
+      +full
+      +trans
+      background-color: rgba(black,0.7)
+      opacity: 0
+      z-index: 2
+    .tag_in_cover
+      position: absolute
+      right: 0
+      top: 0
+      // background-color: white
+      color: white
+      padding: 5px 10px
+      opacity: 0.6
+      letter-spacing: 1px
+      +trans
+      &:before
+        content: "#"
+        
+    &:hover
+      .tag_in_cover
+        opacity: 1
+      .hover_title
+        opacity: 1
+      &:before
+        opacity: 1
+          
     .cover
       +full
       background-size: cover
@@ -363,9 +445,20 @@ p
     mix-blend-mode: multiply
   .player_container
     display: flex
+    width: 100%
+    h5
+      margin-top: 15px
+    .tag
+      padding: 2px 5px
+      border: solid 1px white
+      border-radius: 2px
+      margin-right: 5px
+      &:first-child
+        margin-left: 20px
     .player
     .related
       width: 50%
+      padding-top: 50px
       ul
         list-style: none
         width: 100%
@@ -374,6 +467,7 @@ p
         display: block
         .video_box
           width: 100%
+
           h5
             background-color: white
             color: #111

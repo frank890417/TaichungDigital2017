@@ -7740,7 +7740,7 @@ body:after {
 #app {
   width: 100%;
   height: 100%;
-  max-width: 1280px;
+  max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -7979,7 +7979,8 @@ p {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  height: 70vh;
+  height: 75vh;
+  padding-top: 50px;
 }
 
 .container.page_project .cover {
@@ -7993,7 +7994,8 @@ p {
 
 .container.page_project .left {
   width: 40%;
-  padding-left: 100px;
+  padding: 0px 15px;
+  padding-left: 90px;
   border-right: solid 1px white;
 }
 
@@ -8011,10 +8013,27 @@ p {
 
 .container.page_project .right {
   padding: 10px 20px;
-  width: 60%;
+  width: 70%;
   max-height: 80vh;
   overflow-y: scroll;
   padding-bottom: 80px;
+}
+
+.container.page_project .top {
+  padding-bottom: 30px;
+}
+
+.container.page_project .bottom {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+}
+
+.container.page_project .bottom .right {
+  height: auto;
+  overflow-y: initial;
 }
 
 .page_index {
@@ -8123,6 +8142,13 @@ p {
   background-size: 105% auto;
 }
 
+.page_project.project_timemicro, .page_project.project_frame {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
 .page_project.project_story {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -8130,11 +8156,41 @@ p {
   overflow-y: scroll;
 }
 
-.page_project.project_story input {
+.page_project.project_story .input_area {
+  width: 100%;
+  padding-right: 50px;
+  vertical-align: middle;
+}
+
+.page_project.project_story .input_area i.fa.fa-search {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.page_project.project_story .input_area input {
+  width: 250px;
   background-color: transparent;
   border: none;
   border-bottom: solid 1px white;
   padding: 5px 10px;
+  padding-left: 20px;
+}
+
+.page_project.project_story .input_area .float_right {
+  float: right;
+}
+
+.page_project.project_story .input_area .float_right select {
+  background-color: black;
+  color: white;
+  padding: 5px 30px;
+  width: 100px;
+  height: 35px;
+  border-radius: 0px;
+  margin-left: 10px;
 }
 
 .page_project.project_story .video_box {
@@ -8142,6 +8198,60 @@ p {
   width: 25%;
   height: 150px;
   cursor: pointer;
+  padding: 5px;
+}
+
+.page_project.project_story .video_box .hover_title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.5s 0s;
+  z-index: 10;
+  font-size: 16px;
+}
+
+.page_project.project_story .video_box:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s 0s;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  z-index: 2;
+}
+
+.page_project.project_story .video_box .tag_in_cover {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: white;
+  padding: 5px 10px;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  transition: 0.5s 0s;
+}
+
+.page_project.project_story .video_box .tag_in_cover:before {
+  content: "#";
+}
+
+.page_project.project_story .video_box:hover .tag_in_cover {
+  opacity: 1;
+}
+
+.page_project.project_story .video_box:hover .hover_title {
+  opacity: 1;
+}
+
+.page_project.project_story .video_box:hover:before {
+  opacity: 1;
 }
 
 .page_project.project_story .video_box .cover {
@@ -8164,10 +8274,27 @@ p {
 .page_project.project_story .player_container {
   display: -webkit-box;
   display: flex;
+  width: 100%;
+}
+
+.page_project.project_story .player_container h5 {
+  margin-top: 15px;
+}
+
+.page_project.project_story .player_container .tag {
+  padding: 2px 5px;
+  border: solid 1px white;
+  border-radius: 2px;
+  margin-right: 5px;
+}
+
+.page_project.project_story .player_container .tag:first-child {
+  margin-left: 20px;
 }
 
 .page_project.project_story .player_container .related {
   width: 50%;
+  padding-top: 50px;
 }
 
 .page_project.project_story .player_container .related ul {

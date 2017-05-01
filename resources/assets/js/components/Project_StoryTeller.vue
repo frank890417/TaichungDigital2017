@@ -1,29 +1,49 @@
 <template lang="jade">
   .container.page_project.project_story
-    .video_container
+    .top
       br
-      input(v-model="filter")
-      br
-      br
+      .input_area
+        i.fa.fa-search
+        input(v-model="filter")
+        .float_right
+          select
+            option 覺味
+            option 漫遊
+            option 印象
+            option 未來
+          select(style="width: 120px")
+            option CC BY 3.0
+            option CC BY-NC-ND 3.0
+          select
+            option 0-5年
+            option 6-10年
+            option 11-15年
+            option 16-20年
+            option 20年以上
+
       .player_container
 
         .player(v-if="selected_video")
           h3 [{{'#'+selected_video.theme}}] {{selected_video.title}} 
           h5 {{selected_video.info}}
+            span.tag(v-for="t in selected_video.tag.split(',')") {{t}}
           span( v-html="embed(selected_video.youtube)")
         .related
           ul
             li.related_item
 
-              .video_box(v-for="(rv,id) in related_set(selected_video)" v-if="rv.youtube!=''" @click="sel_id=rv.id")
+              .video_box(v-for="(rv,id) in related_set(selected_video)" v-if="rv.youtube!=''" @click="sel_id=rv.id" ,:key="rv")
                 
                 .cover(:style="bg_css('https://img.youtube.com/vi/'+rv.youtube.split('/').slice(-1)+'/0.jpg')")
                   h5 {{rv.title}}
+                  .hover_title {{rv.title}}
 
       br
-      .video_box(v-for="(piece,id) in filtered_data" v-if="piece.youtube!=''" @click="sel_id=piece.id")
+      .video_box(v-for="(piece,id) in filtered_data" v-if="piece.youtube!=''" @click="sel_id=piece.id"  ,:key="piece")
         .cover(:style="bg_css('https://img.youtube.com/vi/'+piece.youtube.split('/').slice(-1)+'/0.jpg')")
-    .content_container
+          .tag_in_cover {{piece.theme}}
+          .hover_title {{piece.title}}
+    .bottom
       .left
         h1 時光@臺中
         h4 作者
