@@ -1,0 +1,257 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//------------------
+
+@mixin size($w,$h:$w)
+  width: $w
+  height: $h
+  
+@mixin trans($d: 0.5s,$dl: 0s)
+  transition: $d $dl
+  
+@mixin full
+  +size(100%)
+  
+@mixin ab_center
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+  
+@mixin flex_center
+  display: flex
+  justify-content: center
+  align-items: center
+  
+//------------------
+
+*
+  position: relative
+  font-family: 'Songti TC','微軟正黑體',serif
+
+html,body
+  background-color: #111
+  +full
+
+@keyframes shk
+  0%
+    background-position: 0 1px
+  25%
+    background-position: 1px 0
+  75%
+    background-position: -1px 0
+  100%
+    background-position: 0 -1px
+
+body
+  background-image: url("/img/noise.png")
+  background-size: cover
+  animation: shk 1s infinite
+  &:after
+    content: ""
+    position: absolute
+    +full
+    left: 0
+    top: 0
+    background: radial-gradient(white 0%,transparent 80%)
+    opacity: 0.2
+    pointer-events: none
+
+#app
+  +full
+  max-width: 1280px
+  margin-left: auto
+  margin-right: auto
+  position: relative
+  background-color: transparent
+  
+a
+  color: initial
+  text-decoration: none
+  &:hover,&:focus
+    text-decoration: none
+    animation: unsteady 1.5s infinite
+//----------------
+
+@keyframes unsteady
+  0%
+    transform: translate(0px)
+    opacity: 1
+  20%
+    transform: translate(0px)
+    opacity: 0.7
+  23%
+    transform: translate(5px)
+    opacity: 0
+  26%
+    transform: translate(-3px)
+    opacity: 1
+  29%
+    transform: translate(0px)
+    opacity: 0.5
+
+//------------
+  
+.leftbar
+  position: absolute
+  left: 0
+  top: 0
+
+.tern
+  position: absolute
+  bottom: 20px
+  color: white
+  letter-spacing: 1px
+  opacity: 0.5
+
+//------------
+.fullnav
+
+  list-style: none
+  font-size: 45px
+  letter-spacing: 10px
+  line-height: 76px
+  font-weight: 400
+  +full
+  position: fixed
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+  +flex_center
+  z-index: 500
+  background-color: rgba(#111,0.90)
+
+  li
+    display: inline-block
+    cursor: pointer
+    a
+      color: rgba(white,0.4)
+      +trans
+      &:hover
+        color: rgba(white,1)
+      &:after
+        display: inline-block
+        content: "。"
+        transform: translate(-15px,15px)
+  opacity: 0
+  pointer-events: none
+  +trans
+  &.open
+    opacity: 1
+    pointer-events: initial
+
+
+.leftbar
+  // border: solid 1px white
+  position: absolute
+  // left: 15%
+  top: 30px
+  width: 300px
+  // height: 100%
+  color: white
+  z-index: 1000
+
+  .header
+    cursor: pointer
+    left: 20px
+    .line1
+      font-size: 34px
+      letter-spacing: 25px
+    .line2 
+      font-size: 13px
+      letter-spacing: 12px
+
+  .hamburger
+    +size(30px)
+    position: absolute
+    top: 120px
+    left: 20px
+    cursor: pointer
+    background-color: transparent
+    &:after
+      content: ""
+      
+
+    .l1,.l2,.l3
+      
+      width: 100%
+      height: 2px
+      background-color: white
+      transform-origin: 50% 50%
+      +ab_center
+      +trans
+    .l1
+      transform: translate(-50%,10px)
+    .l2
+      // top: 10px
+      transform: translate(-50%,0px)
+    .l3
+      // top: 20px
+      transform: translate(-50%,-10px)
+    &.open
+      .l1
+        transform: translate(-50%,-50%) rotate(45deg)
+      .l2
+        transform: translate(-50%,-50%) rotate(-45deg)
+      .l3
+        transform: translate(-50%,-50%) rotate(45deg)
+
+
+
+//----------------
+
+.container.project
+  display: flex
+  color: white
+  +ab_center
+  .left,.right
+    height: 100%
+  .left
+    width: 40%
+    padding-left: 100px
+    border-right: solid 1px white
+    h1
+      font-size: 60px
+    h4
+      margin-top: 50px
+      font-size: 30px
+      padding-bottom: 10px
+      border-bottom: solid 1px white
+      width: 60%
+  .right
+    padding: 10px 20px
+    width: 60%
+    max-height: 80vh
+    overflow-y: scroll
+
+//------------------
+
+//-------------------------
+.fade-enter-active,.fade-leave-active
+  transition: opacity .5s
+
+.fade-enter,.fade-leave-to
+  opacity: 0
+.fade-enter-to,.fade-leave
+  opacity: 1
+
+.fade-delay-enter-active
+  transition: opacity .5s .5s
+.fade-delay-leave-active
+  transition: opacity .5s
+
+.fade-delay-enter,.fade-delay-leave-to
+  opacity: 0
+.fade-delay-enter-to,.fade-delay-leave
+  opacity: 1
+
+
+      
