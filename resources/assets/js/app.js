@@ -28,8 +28,8 @@ require('./bootstrap');
 var Navbar = Vue.component('Navbar', require('./components/Navbar.vue'));
 var Nav_full = Vue.component('Nav_full', require('./components/Nav_full.vue'));
 
-var page_index = Vue.component('page_index', require('./components/page_index.vue'));
-var page_about = Vue.component('page_about', require('./components/page_about.vue'));
+var page_index = Vue.component('page_index', require('./components/Page_Index.vue'));
+var page_about = Vue.component('page_about', require('./components/Page_About.vue'));
 
 var Project_StoryTeller = Vue.component('Project_StoryTeller', require('./components/Project_StoryTeller.vue'));
 var Project_FrameofMind = Vue.component('Project_FrameofMind', require('./components/Project_FrameofMind.vue'));
@@ -75,7 +75,7 @@ var store = new Vuex.Store({
         name: "絮語",
         eng: "Dandelion’s Words",
         url: "/Project/DandelionsWords",
-        img: "/img/page_dan.png"
+        img: "/img/page_dande.png"
       },
       {
         name: "日常取樣",
@@ -87,13 +87,13 @@ var store = new Vuex.Store({
         name: "時光@臺中",
         eng: "Storyteller",
         url: "/Project/StoryTeller",
-        img: "/img/page_dan.png"
+        img: "/img/page_storytell.png"
       },
       {
         name: "時光顯微鏡",
         eng: "Time microscope",
         url: "/Project/TimeMicroscope",
-        img: "/img/page_dan.png"
+        img: "/img/page_timemicro.png"
       }
     ]
   },

@@ -1,7 +1,7 @@
 <template lang="jade">
   .page_index
     .project_window
-      \ul.projects(:style="pan")
+      ul.projects(:style="pan")
         router-link.project(:to="project.url" v-for="project in projects")
           h1 {{project.name}}
           .proj_image(:style="bg_css(project.img)")
