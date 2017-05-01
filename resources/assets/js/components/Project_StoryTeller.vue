@@ -1,5 +1,5 @@
 <template lang="jade">
-  .container.project
+  .container.page_project
     .left
       h1 時光@臺中
       h4 作者

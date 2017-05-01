@@ -28,6 +28,9 @@ require('./bootstrap');
 var Navbar = Vue.component('Navbar', require('./components/Navbar.vue'));
 var Nav_full = Vue.component('Nav_full', require('./components/Nav_full.vue'));
 
+var page_index = Vue.component('page_index', require('./components/page_index.vue'));
+var page_about = Vue.component('page_about', require('./components/page_about.vue'));
+
 var Project_StoryTeller = Vue.component('Project_StoryTeller', require('./components/Project_StoryTeller.vue'));
 var Project_FrameofMind = Vue.component('Project_FrameofMind', require('./components/Project_FrameofMind.vue'));
 var Project_DandelionsWords = Vue.component('Project_DandelionsWords', require('./components/Project_DandelionsWords.vue'));
@@ -37,6 +40,8 @@ var Project_TimeMicroscope = Vue.component('Project_TimeMicroscope', require('./
 
 //vue router
 const routes = [
+  {path: '/',component: page_index },
+  {path: '/about',component: page_about },
   {path: '/Project/StoryTeller',component: Project_StoryTeller },
   {path: '/Project/FrameofMind',component: Project_FrameofMind },
   {path: '/Project/DandelionsWords',component: Project_DandelionsWords },
@@ -47,7 +52,7 @@ const routes = [
 const router = new VueRouter({
   routes
 });
-router.replace("/Project/StoryTeller");
+// router.replace("/Project/StoryTeller");
 
 router.beforeEach((to, from, next) => {
   console.log(to);
@@ -58,32 +63,37 @@ router.beforeEach((to, from, next) => {
 //vuex store
 var store = new Vuex.Store({
   state: {
-    full_nav_open: true,
+    full_nav_open: false,
     projects: [
       {
         name: "新境、心境",
         eng: "Frame of Mind",
-        url: "/Project/FrameofMind"
+        url: "/Project/FrameofMind",
+        img: "/img/page_dan.png"
       },
       {
-        name: "絮語 (Dandelion’s Words)",
+        name: "絮語",
         eng: "Dandelion’s Words",
-        url: "/Project/DandelionsWords"
+        url: "/Project/DandelionsWords",
+        img: "/img/page_dan.png"
       },
       {
-        name: "日常取樣 (Trivial Sampling)",
+        name: "日常取樣",
         eng: "Trivial Sampling",
-        url: "/Project/TrivialSampling"
+        url: "/Project/TrivialSampling",
+        img: "/img/page_trivial.png"
       },
       {
-        name: "時光@臺中(Storyteller)",
+        name: "時光@臺中",
         eng: "Storyteller",
-        url: "/Project/StoryTeller"
+        url: "/Project/StoryTeller",
+        img: "/img/page_dan.png"
       },
       {
-        name: "時光顯微鏡(Time microscope)",
+        name: "時光顯微鏡",
         eng: "Time microscope",
-        url: "/Project/TimeMicroscope"
+        url: "/Project/TimeMicroscope",
+        img: "/img/page_dan.png"
       }
     ]
   },

@@ -7677,45 +7677,52 @@ button.close {
 
 html, body {
   background-color: #111;
+  overflow: hidden;
   width: 100%;
   height: 100%;
 }
 
 @-webkit-keyframes shk {
   0% {
-    background-position: 0 1px;
+    background-position: 0 500px;
   }
   25% {
-    background-position: 1px 0;
+    background-position: 500px 500px;
+  }
+  50% {
+    background-position: 500px 0;
   }
   75% {
-    background-position: -1px 0;
+    background-position: 0 0;
   }
   100% {
-    background-position: 0 -1px;
+    background-position: 500px 500px;
   }
 }
 
 @keyframes shk {
   0% {
-    background-position: 0 1px;
+    background-position: 0 500px;
   }
   25% {
-    background-position: 1px 0;
+    background-position: 500px 500px;
+  }
+  50% {
+    background-position: 500px 0;
   }
   75% {
-    background-position: -1px 0;
+    background-position: 0 0;
   }
   100% {
-    background-position: 0 -1px;
+    background-position: 500px 500px;
   }
 }
 
 body {
   background-image: url("/img/noise.png");
   background-size: cover;
-  -webkit-animation: shk 1s infinite;
-  animation: shk 1s infinite;
+  -webkit-animation: shk 0.2s infinite;
+  animation: shk 0.2s infinite;
 }
 
 body:after {
@@ -7747,8 +7754,14 @@ a {
 
 a:hover, a:focus {
   text-decoration: none;
-  -webkit-animation: unsteady 1.5s infinite;
-  animation: unsteady 1.5s infinite;
+}
+
+p {
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-family: 微軟正黑體;
 }
 
 @-webkit-keyframes unsteady {
@@ -7858,6 +7871,8 @@ a:hover, a:focus {
 }
 
 .fullnav li a:hover {
+  -webkit-animation: unsteady 1.5s infinite;
+  animation: unsteady 1.5s infinite;
   color: white;
 }
 
@@ -7884,6 +7899,7 @@ a:hover, a:focus {
 .leftbar .header {
   cursor: pointer;
   left: 20px;
+  color: white;
 }
 
 .leftbar .header .line1 {
@@ -7954,7 +7970,7 @@ a:hover, a:focus {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.container.project {
+.container.page_project {
   display: -webkit-box;
   display: flex;
   color: white;
@@ -7963,23 +7979,24 @@ a:hover, a:focus {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  height: 70vh;
 }
 
-.container.project .left, .container.project .right {
+.container.page_project .left, .container.page_project .right {
   height: 100%;
 }
 
-.container.project .left {
+.container.page_project .left {
   width: 40%;
   padding-left: 100px;
   border-right: solid 1px white;
 }
 
-.container.project .left h1 {
+.container.page_project .left h1 {
   font-size: 60px;
 }
 
-.container.project .left h4 {
+.container.page_project .left h4 {
   margin-top: 50px;
   font-size: 30px;
   padding-bottom: 10px;
@@ -7987,11 +8004,116 @@ a:hover, a:focus {
   width: 60%;
 }
 
-.container.project .right {
+.container.page_project .right {
   padding: 10px 20px;
   width: 60%;
   max-height: 80vh;
   overflow-y: scroll;
+}
+
+.page_index {
+  width: 100%;
+  height: 100%;
+}
+
+.backeng {
+  position: absolute;
+  font-size: 500px;
+  mix-blend-mode: screen;
+  opacity: 0.15;
+}
+
+.project_next, .project_pre {
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  border: solid 1px white;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 60;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  transition: 0.5s 0s;
+}
+
+.project_next:hover, .project_pre:hover {
+  background-color: #FFF;
+  color: #111;
+}
+
+.project_pre {
+  left: 50px;
+}
+
+.project_next {
+  left: initial;
+  right: 50px;
+}
+
+.project_window {
+  width: 80%;
+  position: absolute;
+  z-index: 50;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.projects {
+  padding: 0;
+  width: 2500px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.5s 0s;
+}
+
+.project {
+  width: 900px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.project h1 {
+  letter-spacing: 5px;
+  position: absolute;
+  font-size: 60px;
+  z-index: 5;
+  color: white;
+  left: -80px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition: 0.5s 0s;
+  text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project .proj_image {
+  width: 480px;
+  height: 260px;
+  background-size: 100% auto;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+  transition: 0.5s 0s;
+}
+
+.project:hover h1 {
+  -webkit-transform: translateX(-10px) translateY(-53%);
+  transform: translateX(-10px) translateY(-53%);
+}
+
+.project:hover .proj_image {
+  width: 500px;
+  height: 280px;
+  background-size: 105% auto;
 }
 
 .fade-enter-active, .fade-leave-active {

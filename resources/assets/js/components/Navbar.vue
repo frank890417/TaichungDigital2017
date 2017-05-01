@@ -1,6 +1,6 @@
 <template lang="jade">
   .leftbar
-    .header
+    router-link(to="/").header
       .line1 質感
       .line2 台中紀事
     .hamburger(@click="toggle_full_nav" ,:class="{open: full_nav_open}")

@@ -39,22 +39,25 @@
 
 html,body
   background-color: #111
+  overflow: hidden
   +full
 
 @keyframes shk
   0%
-    background-position: 0 1px
+    background-position: 0 500px
   25%
-    background-position: 1px 0
+    background-position: 500px 500px
+  50%
+    background-position: 500px 0
   75%
-    background-position: -1px 0
+    background-position: 0 0
   100%
-    background-position: 0 -1px
+    background-position: 500px 500px
 
 body
   background-image: url("/img/noise.png")
   background-size: cover
-  animation: shk 1s infinite
+  animation: shk 0.2s infinite
   &:after
     content: ""
     position: absolute
@@ -78,7 +81,14 @@ a
   text-decoration: none
   &:hover,&:focus
     text-decoration: none
-    animation: unsteady 1.5s infinite
+   
+
+p
+  font-size: 16px
+  line-height: 32px
+  font-weight: 100
+  letter-spacing: 1px
+  font-family: 微軟正黑體
 //----------------
 
 @keyframes unsteady
@@ -134,13 +144,16 @@ a
     cursor: pointer
     a
       color: rgba(white,0.4)
+
       +trans
       &:hover
+        animation: unsteady 1.5s infinite
         color: rgba(white,1)
       &:after
         display: inline-block
         content: "。"
         transform: translate(-15px,15px)
+
   opacity: 0
   pointer-events: none
   +trans
@@ -162,6 +175,7 @@ a
   .header
     cursor: pointer
     left: 20px
+    color: white
     .line1
       font-size: 34px
       letter-spacing: 25px
@@ -208,10 +222,11 @@ a
 
 //----------------
 
-.container.project
+.container.page_project
   display: flex
   color: white
   +ab_center
+  height: 70vh
   .left,.right
     height: 100%
   .left
@@ -233,6 +248,91 @@ a
     overflow-y: scroll
 
 //------------------
+// index
+
+.page_index
+  +full
+
+.backeng
+  position: absolute
+  font-size: 500px
+  mix-blend-mode: screen
+  opacity: 0.15
+
+.project_next , .project_pre
+  color: white
+  +size(40px)
+  font-size: 30px
+  border: solid 1px white
+  border-radius: 50%
+  cursor: pointer
+  z-index: 60
+  +flex_center
+  +ab_center
+  +trans
+
+  &:hover
+    background-color: #FFF
+    color: #111
+
+.project_pre 
+  left: 50px
+.project_next
+  left: initial
+  right: 50px
+
+
+.project_window
+  width: 80%
+  position: absolute
+  z-index: 50
+
+  top: 50%
+  transform: translateY(-50%)
+
+.projects
+  padding: 0
+  width: 2500px
+  white-space: nowrap
+  cursor: pointer
+  +trans
+
+.project
+  width: 900px
+  cursor: pointer
+  display: inline-block
+  h1
+    letter-spacing: 5px
+    position: absolute
+    // +ab_center
+    font-size: 60px
+    z-index: 5
+    color: white
+    left: -80px
+    top: 50%
+    transform: translateY(-50%)
+    +trans
+    text-shadow: 0px 0px 30px rgba(black,0.3)
+
+  
+  .proj_image
+    +size(480px,260px)
+    background-size: 100% auto
+    box-shadow: 0px 0px 30px rgba(black,0.3)
+    +trans
+  &:hover
+    h1
+      transform: translateX(-10px) translateY(-53%)
+    .proj_image
+      // transform: translateX(-10px) translateY(-53%)
+      +size(500px,280px)
+      background-size: 105% auto
+
+
+
+
+
+
 
 //-------------------------
 .fade-enter-active,.fade-leave-active

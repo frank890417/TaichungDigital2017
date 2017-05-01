@@ -2,7 +2,7 @@
 nav.fullnav(:class="{open: full_nav_open}")
   ul
     li(@click="toggle_full_nav")
-      router-link(to="/Project/StoryTeller") 質感計畫
+      router-link(to="/about") 質感計畫
     li(@click="toggle_full_nav")
       router-link(to="/Project/FrameofMind") 新境、心境
     br
