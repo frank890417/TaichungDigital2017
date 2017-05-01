@@ -227,6 +227,9 @@ p
   color: white
   +ab_center
   height: 70vh
+  .cover
+    width: 100%
+    margin-bottom: 50px
   .left,.right
     height: 100%
   .left
@@ -246,7 +249,7 @@ p
     width: 60%
     max-height: 80vh
     overflow-y: scroll
-
+    padding-bottom: 80px
 //------------------
 // index
 
@@ -331,8 +334,54 @@ p
 
 
 
+//-------------------------
+.page_project.project_story
+  flex-direction: column
+  overflow-y: scroll
 
+  input
+    background-color: transparent
+    border: none
+    border-bottom: solid 1px white
+    padding: 5px 10px
+  .video_container
 
+  .video_box
+    display: inline-block
+    +size(25%,150px)
+    cursor: pointer
+    .cover
+      +full
+      background-size: cover
+      background-position: center center
+
+  .content_container
+    display: flex
+
+  .player
+    width: 100%
+    mix-blend-mode: multiply
+  .player_container
+    display: flex
+    .player
+    .related
+      width: 50%
+      ul
+        list-style: none
+        width: 100%
+        padding-top: 30px
+      .related_item
+        display: block
+        .video_box
+          width: 100%
+          h5
+            background-color: white
+            color: #111
+            letter-spacing: 1px
+            position: absolute
+            bottom: 0
+            width: 100%
+            padding: 5px 10px
 
 
 //-------------------------
