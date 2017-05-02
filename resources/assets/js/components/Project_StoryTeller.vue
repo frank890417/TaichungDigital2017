@@ -6,20 +6,23 @@
         i.fa.fa-search
         input(v-model="filter")
         .float_right
-          select
-            option 覺味
-            option 漫遊
-            option 印象
-            option 未來
-          select(style="width: 120px")
-            option CC BY 3.0
-            option CC BY-NC-ND 3.0
-          select
-            option 0-5年
-            option 6-10年
-            option 11-15年
-            option 16-20年
-            option 20年以上
+          select(v-model="sel_cata")
+            option(value="") (類別)
+            option(value="覺味") 覺味
+            option(value="漫遊") 漫遊
+            option(value="印象") 印象
+            option(value="未來") 未來
+          select(style="width: 120px" v-model="sel_auth")
+            option(value="") (授權方式)
+            option(value="CC BY 3.0") CC BY 3.0
+            option(value="CC BY-NC-ND 3.0") CC BY-NC-ND 3.0
+          select(v-model="sel_year")
+            option(value="") (居住時間)
+            option(value="0-5年") 0-5年
+            option(value="6-10年") 6-10年
+            option(value="11-15年") 11-15年
+            option(value="16-20年") 16-20年
+            option(value="20年以上") 20年以上
 
       .player_container
 
@@ -83,6 +86,9 @@
         data(){
           return {
             filter: "",
+            sel_cata: "",
+            sel_auth: "",
+            sel_year: "",
             tagfill: [
               {name: "覺味",status: false},
               {name: "漫遊",status: false},
@@ -390,7 +396,19 @@
         computed: {
           filtered_data(){
             var vobj=this;
-            return this.vdata.filter((a)=>(((a.content+a.info+a.tag+a.theme).indexOf(vobj.filter)!=-1)||vobj.filter==""));
+            return this.vdata.filter((a)=>(
+
+              (((a.content+a.info+a.tag+a.theme).indexOf(vobj.filter)!=-1
+              || vobj.filter=="")
+              && (vobj.sel_cata=="" || vobj.sel_cata==a.theme)
+              && (vobj.sel_auth=="" || vobj.sel_auth==a.auth)
+              && (vobj.sel_year=="" || vobj.sel_year==a.livetime)
+
+            )
+
+
+            ));
+
           },
           selected_video(){
             if (this.sel_id)
