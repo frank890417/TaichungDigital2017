@@ -40,7 +40,7 @@
         </transition>  
 
         @yield('content')
-        <div class="tern">DigitalCulture.tw 製作 | 除另有註明，網站之內容皆採用 創用CC 姓名標示-相同方式分享 3.0 台灣 授權條</div>
+        <div class="tern">DigitalCulture.tw 製作 | 除另有註明，網站之內容皆採用 創用CC 姓名標示-相同方式分享 3.0 臺灣 授權條款</div>
     </div>
 
     <!-- Scripts -->
