@@ -1,7 +1,7 @@
 <template lang="jade">
   .container.page_project
     .left
-      h1 時光@臺中
+      h1 質感計畫
       h4 策展人
       h5 <br>劉惠媛<br> (臺灣數位文化中心先期規劃計畫 主持人)
       <br>侯君昊<br> (臺灣數位文化中心先期規劃計畫 協同主持人)
