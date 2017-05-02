@@ -1,0 +1,6 @@
+alias pa="php artisan"
+alias commit="sh commit.sh"
+alias cache="sh cache.sh"
+alias watch="gulp watch"
+alias w="watch"
+alias cm="cache"
