@@ -5,8 +5,8 @@
     .bottom
       .left
         h1 時光顯微鏡
-        h4 作者
-        h5 章光和
+        h4 章光和
+        //h5 
         p 紐約大學藝術碩士，世新大學圖文傳播暨數位出版學系副教授。專業影像處理與藝術創作，作品在國內外展出、典藏。
       .right
         img.cover(src="/img/page_timemicro.png")
