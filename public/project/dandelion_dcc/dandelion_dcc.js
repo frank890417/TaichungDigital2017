@@ -4,14 +4,14 @@ var dan = [];
 var infoON = true;
 var wind;
 var wind_var;
-var wind_factor = 0.5;
+var wind_factor = 0.85;
 var wind_vec;
 var float_vec;
 var timer = {init:
 0, gotPost:
 0, wind:
 0};
-var timer_limit = 5*60*1000;
+var timer_limit = 5*60*1000; // 5 minutes interval
 var posts_valid = [];
 var query = ["高美濕地", "逢甲夜市", "東海大學", "夜景", ""];
 var queryIdx = 0;
@@ -23,18 +23,13 @@ function setup() {
   wind = createVector(0, 0, 0);
   wind_var = createVector(0.1, 0, 0);
   wind_vec = createVector(0, 0, 0);
-  float_vec = createVector(0, -0.05, 0);
+  float_vec = createVector(0, -0.1, 0);
 
-  //  var url = 'http://api.apixu.com/v1/current.json?key=9e4cad309ac0473ebfd25621172704&q=Taichung';
   loadWind();
-
-  //var str = "說真的，台中東海大學小吃街不錯喔～";
-  //dan[0] = new Dandelion(width/2, height/2, 80, str);
-
   loadPost();
-  //gotPost(json);
 
-  textFont("Arial");
+  //textFont("Arial");
+  textFont("Noto Sans CJK TC Thin");
   textSize(24);
   textAlign(CENTER);
 }
@@ -46,15 +41,17 @@ function draw() {
     resetTimer('wind');
   }
   wind_update();
-
+  
+  // Keys to control wind factor
   if (keyIsDown(RIGHT_ARROW)) {
     wind_factor += 0.05;
   }
   if (keyIsDown(LEFT_ARROW)) {
     wind_factor -= 0.05;
   }
-  wind_factor = constrain(wind_factor, -2.0, 2.0);
+  wind_factor = constrain(wind_factor, -1.0, 2.0);
 
+  // Update and display dandelion objects
   if (dan.length > 0) {
     for (var i=0; i < dan.length; i++) {
       dan[i].update();
@@ -62,18 +59,8 @@ function draw() {
     }
   }
 
-  if (infoON) {
-    infoY=1;
-    fill(180);
-    textAlign(LEFT);
-    textSize(12);
-    text("[SPACE] 釋放種子，[左/右] 風力強度, [上/下] 文字類別, [R] 生成新字雲", 10, (infoY++)*20);
-    text(query[queryIdx], 10, (infoY++)*20);
-    //text("FPS: "+round(frameRate()), 10, (infoY++)*20);
-    if (wind) text("目前風向 ("+nf(wind.x,0,2)+","+nf(wind.y,0,2)+")", 10, (infoY++)*20);
-    text("風力強度 "+nf(wind_factor,0,2), 10, (infoY++)*20);
-    if (posts_valid.length > 0) text("取自 "+posts_valid.length+" 篇貼文", 10, (infoY++)*20);
-  }
+  // Info panel
+  infoPanel();
 }
 
 function windowResized() {
@@ -105,9 +92,11 @@ function loadWind() {
 }
 
 function wind_update() {
-  wind_vec.copy(wind);
-  wind_vec.add(wind_var);
-  wind_vec.add(float_vec);
+  wind_vec.set(0, 0, 0);
+  wind_vec.add(wind);
+  wind_vec.rotate(PI);
+  //wind_vec.add(wind_var);
+  //wind_vec.add(float_vec);
   wind_vec.mult(wind_factor);
 }
 
@@ -182,7 +171,7 @@ function Dandelion(_x, _y, _l, _str) {
   this.y = _y;
   this.l = _l;
   this.str = _str;
-  this.len = max(this.str.length, 60);
+  this.len = min(this.str.length, 60);
   this.ds = [];
   this.detachIdx = 0;
 
@@ -214,14 +203,14 @@ function Dandelion(_x, _y, _l, _str) {
     strokeWeight(5);
     line(this.x, height, this.x, this.y);
     translate(this.x, this.y);
-    for (var i=0; i<this.ds.length; i++) {
-      this.ds[i].update();
-      this.ds[i].display();
-    }
     fill(0);
     stroke(255);
     strokeWeight(2);
     ellipse(0, 0, 40, 40);
+    for (var i=0; i<this.ds.length; i++) {
+      this.ds[i].update();
+      this.ds[i].display();
+    }
     pop();
   }
 }
@@ -232,7 +221,7 @@ function DandelionSeed(_x, _y, _l, _ang, _w) {
   this.l = _l;
   this.ang = _ang-HALF_PI;
   this.ang_tmp = this.ang;
-  this.ang_r = random(-0.05, 0.05);
+  this.ang_r = random(-0.1, 0.1);
   this.ang_counter = 0;
   this.w = _w;
   this.stiff = 10.0;
@@ -291,13 +280,16 @@ function DandelionSeed(_x, _y, _l, _ang, _w) {
 }
 
 function keyTyped() {
-  if (key == " ") {
+  if (key === " ") {
     for (var i=0; i<danNum; i++) {
       dan[i].dsDetach();
     }
   }
-  if (key == "r") {
+  if (key === "r") {
     regenDandelion();
+  }
+  if (key === "i") {
+    infoON = !infoON;
   }
   return false;
 }
@@ -312,4 +304,19 @@ function keyPressed() {
   }
   queryIdx = constrain(queryIdx, 0, query.length-1);
   if (idx != queryIdx) loadPost();
+}
+
+function infoPanel() {
+    if (infoON) {
+    infoY=1;
+    fill(180);
+    textAlign(LEFT);
+    textSize(12);
+    text("[SPACE] 釋放種子，[左/右] 風力強度, [上/下] 搜尋類別, [R] 產生新字雲", 10, (infoY++)*20);
+    text("主題: "+query[queryIdx], 10, (infoY++)*20);
+    //text("FPS: "+round(frameRate()), 10, (infoY++)*20);
+    if (wind) text("風向: ("+nf(wind.x,0,2)+","+nf(wind.y,0,2)+")", 10, (infoY++)*20);
+    text("強度: "+nf(wind_factor,0,2), 10, (infoY++)*20);
+    if (posts_valid.length > 0) text("取自 "+posts_valid.length+" 篇貼文", 10, (infoY++)*20);
+  }
 }
