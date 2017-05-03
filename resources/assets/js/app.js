@@ -16,6 +16,14 @@ Vue.use(Vuex);
 require('./bootstrap');
 
 
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-52977512-17', 'auto');
+ga('send', 'pageview');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50,15 +58,17 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: "history"
 });
 // router.replace("/Project/StoryTeller");
 
 router.beforeEach((to, from, next) => {
   console.log(to);
-  
+  ga('send', 'pageview',to.path);
   next();
 });
+
 
 //vuex store
 var store = new Vuex.Store({
@@ -66,31 +76,36 @@ var store = new Vuex.Store({
     full_nav_open: false,
     now_id: 0,
     projects: [
-      {
+      { 
+        id: 0,
         name: "新境、心境",
         eng: "Frame of Mind",
         url: "/Project/FrameofMind",
         img: "/img/page_dan.png"
       },
       {
+        id: 1,
         name: "絮語",
         eng: "Dandelion’s Words",
         url: "/Project/DandelionsWords",
         img: "/img/page_dande.png"
       },
       {
+        id: 2,
         name: "日常取樣",
         eng: "Trivial Sampling",
         url: "/Project/TrivialSampling",
         img: "/img/page_trivial.png"
       },
       {
+        id: 3,
         name: "時光@臺中",
         eng: "Storyteller",
         url: "/Project/StoryTeller",
         img: "/img/page_storytell.png"
       },
       {
+        id: 4,
         name: "時光顯微鏡",
         eng: "Time microscope",
         url: "/Project/TimeMicroscope",
