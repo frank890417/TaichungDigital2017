@@ -1,6 +1,9 @@
 <template lang="jade">
 .container.page_project.project_story
   .top
+    span(v-html="embed_head('aNDxQwM_crw')")
+    br
+    br
     br
     .input_area
       i.fa.fa-search
@@ -33,7 +36,7 @@
         h5 {{selected_video.info}}
           span.tag(v-for="t in selected_video.tag.split(',')") {{t}}
         span( v-html="embed(selected_video.youtube)")
-      .related
+      .related(v-if="related_set(selected_video).length>0")
         ul
           li.related_item
 
@@ -791,6 +794,9 @@
         methods: {
           bg_css(url){
             return {"background-image":"url("+url+")"}
+          },
+          embed_head(tag){
+            return "<iframe width='100%' height='600' src='https://www.youtube.com/embed/"+tag+"?autoplay=1&rel=0' frameborder='0' allowfullscreen></iframe>";
           },
           embed(url){
             return "<iframe width=\"100%\" height=\"450\" src=\"https://www.youtube.com/embed/"+url.split('/').slice(-1)+"?autoplay=1&rel=0\" frameborder=\"0\" allowfullscreen></iframe>";

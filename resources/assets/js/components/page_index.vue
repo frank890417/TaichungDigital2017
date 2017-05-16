@@ -2,11 +2,11 @@
   .page_index
     .project_window
       ul.projects(:style="pan")
-        router-link.project(:to="project.url" v-for="(project,id) in projects",:class="{cur_item: id==now_id}")
+        router-link.project(:to="project.url" v-for="(project,pid) in projects",:class="{cur_item: pid==now_id}")
           .proj_image(:style="bg_css(project.img)")
             h1 {{project.name}}
     transition-group(name="fade" mode="out-in")
-      .backeng(v-for="p in projects",v-text="p.eng" v-show="id==now_id",:key="p") 
+      .backeng(v-for="(p,id) in projects",v-text="p.eng" v-show="id==now_id",:key="p") 
     .project_next(@click="now_id_delta(1)")
       i.fa.fa-angle-right
     .project_pre(@click="now_id_delta(-1)")
