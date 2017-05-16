@@ -9,6 +9,11 @@
       i.fa.fa-search
       input(v-model="filter")
       .float_right
+        select(v-model="sel_count")
+          option(value="16") 顯示16筆
+          option(value="32") 顯示32筆
+          option(value="48") 顯示48筆
+          option(value="1000") 顯示全部
         select(v-model="sel_cata")
           option(value="") 類別
           option(value="片羽") 片羽
@@ -29,6 +34,7 @@
           option(value="16-20年") 16-20年
           option(value="20年以上") 20年以上
 
+
     .player_container
 
       .player(v-if="selected_video")
@@ -36,7 +42,7 @@
         h5 {{selected_video.info}}
           span.tag(v-for="t in selected_video.tag.split(',')") {{t}}
         span( v-html="embed(selected_video.youtube)")
-      .related(v-if="related_set(selected_video).length>0")
+      .related(v-if="selected_video")
         ul
           li.related_item
 
@@ -75,6 +81,7 @@
             sel_cata: "",
             sel_auth: "",
             sel_year: "",
+            sel_count: 16,
             tagfill: [
               {name: "覺味",status: false},
               {name: "漫遊",status: false},
@@ -789,7 +796,8 @@
           };
         },
         mounted() {
-            console.log('Navbar mounted.')
+            console.log('story teller mounted.');
+
         },
         methods: {
           bg_css(url){
@@ -827,6 +835,7 @@
 
             ))
             .sort(()=>(Math.random()<0.5))
+            .slice(0,this.sel_count);
 
             ;
 

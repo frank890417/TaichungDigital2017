@@ -5,7 +5,7 @@
         router-link.project(:to="project.url" v-for="(project,pid) in projects",:class="{cur_item: pid==now_id}")
           .proj_image(:style="bg_css(project.img)")
             h1 {{project.name}}
-    transition-group(name="fade" mode="out-in")
+    transition-group(name="fade" ,mode="out-in" ,style="width: 100%;height: 100%;position: absolute;left: 0;top: 0;", tag="div")
       .backeng(v-for="(p,id) in projects",v-text="p.eng" v-show="id==now_id",:key="p") 
     .project_next(@click="now_id_delta(1)")
       i.fa.fa-angle-right

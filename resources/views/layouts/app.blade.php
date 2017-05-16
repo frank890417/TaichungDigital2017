@@ -30,7 +30,7 @@
     </script>
 </head>
 <body>
-    <audio src="/music/memories-of-a-dream.ogg" autoplay loop></audio>
+    <audio src="/music/memories-of-a-dream.ogg" autoplay loop id="bgmusic"></audio>
     <div id="app">   
         <Navbar></Navbar>
         <Nav_full></Nav_full>

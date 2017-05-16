@@ -17,7 +17,12 @@
 <script>
     export default {
         mounted() {
-            console.log('Navbar mounted.')
+            console.log('time microscope mounted.');
+            $("#bgmusic").attr("src","http://audionautix.com/Music/CoolRide.mp3");
+
+        },
+        beforeDestroy(){
+          $("#bgmusic").attr("src","/music/memories-of-a-dream.ogg");
         },
         methods: {
           embed(tag){
