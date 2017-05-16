@@ -66,6 +66,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log(to);
   ga('send', 'pageview',to.path);
+  setTimeout(function(){
+    $("html,body").animate({scrollTop: "0px",speed: "slow"});
+  },200);
   next();
 });
 
@@ -102,7 +105,7 @@ var store = new Vuex.Store({
         name: "時光@臺中",
         eng: "Storyteller",
         url: "/Project/StoryTeller",
-        img: "/img/page_storytell.png"
+        img: "/img/page_storytell.jpg"
       },
       {
         id: 4,

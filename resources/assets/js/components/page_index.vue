@@ -2,9 +2,9 @@
   .page_index
     .project_window
       ul.projects(:style="pan")
-        router-link.project(:to="project.url" v-for="project in projects")
-          h1 {{project.name}}
+        router-link.project(:to="project.url" v-for="(project,id) in projects",:class="{cur_item: id==now_id}")
           .proj_image(:style="bg_css(project.img)")
+            h1 {{project.name}}
     transition-group(name="fade" mode="out-in")
       .backeng(v-for="p in projects",v-text="p.eng" v-show="id==now_id",:key="p") 
     .project_next(@click="now_id_delta(1)")
@@ -32,7 +32,7 @@
           ...mapState(["projects","now_id"]),
           pan(){
             return {
-              "left": (450-this.now_id*900)+"px"
+              "left": (-this.now_id*1000)+"px"
             };
           }
         }

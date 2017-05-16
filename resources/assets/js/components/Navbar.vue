@@ -2,7 +2,7 @@
   .leftbar
     router-link(to="/").header
       .line1 質感
-      .line2 台中紀事
+      .line2 臺中紀事
     .hamburger(@click="toggle_full_nav" ,:class="{open: full_nav_open}")
       .l1
       .l2

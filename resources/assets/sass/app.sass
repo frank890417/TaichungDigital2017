@@ -39,8 +39,12 @@
 
 html,body
   background-color: #111
-  overflow: hidden
-  +full
+  // overflow: hidden
+  overflow-x: hidden
+  // +full
+  width: 100%
+  height: auto
+  min-height: 100vh
 
 @keyframes shk
   0%
@@ -56,7 +60,8 @@ html,body
 
 body
   background-image: url("/img/noise.png")
-  background-size: cover
+  background-size: 200% auto
+
   animation: shk 0.2s infinite
   &:after
     content: ""
@@ -70,7 +75,7 @@ body
 
 #app
   +full
-  max-width: 1400px
+  max-width: 1300px
   margin-left: auto
   margin-right: auto
   position: relative
@@ -114,16 +119,19 @@ h5
 //------------
   
 .leftbar
-  position: absolute
-  left: 0
+  position: fixed
+  left: 2%
   top: 0
 
 .tern
   position: absolute
   bottom: 20px
+  left: 2%
   color: white
   letter-spacing: 1px
-  opacity: 0.5
+  opacity: 0.25
+  font-size: 14px
+  font-family: 微軟正黑體
 
 //------------
 .fullnav
@@ -167,9 +175,9 @@ h5
 
 .leftbar
   // border: solid 1px white
-  position: absolute
+  position: fixed
   // left: 15%
-  top: 30px
+  top: 15px
   width: 300px
   // height: 100%
   color: white
@@ -223,23 +231,31 @@ h5
 
 
 
+
 //----------------
 
 .container.page_project
   display: flex
   color: white
-  +ab_center
-  height: 75vh
-  padding-top: 50px
+  // +ab_center
+  height: auto
+  max-width: 1200px
+  width: 100%
+
+  padding-top: 150px
+  padding-bottom: 150px
+  margin-bottom: 150px
+  overflow: hidden
   .cover
     width: 100%
     margin-bottom: 50px
   .left,.right
     height: 100%
+
   .left
     width: 40%
     padding: 0px 15px
-    padding-left: 90px
+    padding-left: 0px
     h5
       line-height: 30px
       opacity: 0.85
@@ -258,10 +274,14 @@ h5
   .right
     padding: 10px 20px
     width: 70%
-    max-height: 80vh
-    overflow-y: scroll
+    // max-height: 80vh
+    overflow: hidden
     padding-bottom: 80px
 
+  @media screen and (max-width: 800px)
+    flex-direction: column
+    .left,.right
+      width: 100%
 
   .top
     padding-bottom: 30px
@@ -274,8 +294,26 @@ h5
 //------------------
 // index
 
+@keyframes fadeIn
+  0%
+    // opacity: 0
+    transform: translateX(30px) 
+    filter: saturate(0%)
+  100%
+    // opacity: 1
+    transform: translateX(0px)
+    filter: saturate(100%)
+
+@keyframes sliceIn
+  0%
+    transform: translateX(-50px) translateY(-50%)
+  100%
+    transform: translateX(0px) translateY(-50%)
+
 .page_index
   +full
+  +flex_center
+  height: 100vh
 
 .backeng
   position: absolute
@@ -307,12 +345,13 @@ h5
 
 
 .project_window
-  width: 80%
-  position: absolute
+  width: 100%
+  // position: absolute
+
   z-index: 50
 
-  top: 50%
-  transform: translateY(-50%)
+  // top: 50%
+  // transform: translateY(-50%)
 
 .projects
   padding: 0
@@ -322,9 +361,11 @@ h5
   +trans
 
 .project
-  width: 900px
+  // width: 900px
   cursor: pointer
   display: inline-block
+  // padding-left: 210px
+  // padding-right; 210px
   h1
     letter-spacing: 5px
     position: absolute
@@ -337,10 +378,13 @@ h5
     transform: translateY(-50%)
     +trans
     text-shadow: 0px 0px 30px rgba(black,0.6)
-
+    
   
   .proj_image
-    +size(480px,260px)
+    +size(490px,270px)
+    margin-left: 300px
+    margin-right: 210px
+
     background-size: 100% auto
     box-shadow: 0px 0px 30px rgba(black,0.3)
     background-position: center center
@@ -353,6 +397,10 @@ h5
       +size(500px,280px)
       background-size: 105% auto
 
+  &.cur_item
+    animation: fadeIn 1.5s
+    h1
+      animation: sliceIn 1.5s
 
 //-------------------------
 .page_project.project_timemicro,.page_project.project_frame,.page_project.project_dande
@@ -388,8 +436,8 @@ h5
       select
         background-color: black
         color: white
-        padding: 5px 30px
-        width: 100px
+        padding: 5px 40px
+        min-width: 120px
         height: 35px
         border-radius: 0px
         margin-left: 10px
@@ -450,7 +498,7 @@ h5
 
   .player
     width: 100%
-    mix-blend-mode: multiply
+    // mix-blend-mode: multiply
   .player_container
     display: flex
     width: 100%
