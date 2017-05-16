@@ -303,8 +303,7 @@
                     },
                     {
                       "id": 18,
-                      "youtube": "",
-                      // "youtube": "https://youtu.be/I22a8lOuXyQ?list=PLADMVlPbXG7UKkfa2w6k_w0EklT8uUq3e",
+                      "youtube": "https://youtu.be/I22a8lOuXyQ?list=PLADMVlPbXG7UKkfa2w6k_w0EklT8uUq3e",
                       "filename": "20170401 02 P1240334 B Color",
                       "content": "灌進肉包中\n 紅紅的東泉辣醬\n 也灌注記憶中\n 滿滿的臺中美食體驗\n 周大中/醫生/在臺中出生求學18年\n 臺中人會吃一個紅紅的醬，那最近聽說那個叫東泉辣醬，我們以前不知道，以前都會在小吃餐廳裡面放在一個小小的瓶子裡，像我們車子用的擠機油的那種瓶罐，上面有個開口，我們會把那個開口直接插進肉包裡面吃，把那個辣醬擠進去，那也是一個很特殊的回憶",
                       "participant_name": "周大中醫生",
