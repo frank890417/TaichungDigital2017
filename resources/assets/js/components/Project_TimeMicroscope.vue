@@ -18,7 +18,7 @@
     export default {
         mounted() {
             console.log('time microscope mounted.');
-            $("#bgmusic").attr("src","http://audionautix.com/Music/CoolRide.mp3");
+            $("#bgmusic").attr("src","/music/bgscope.mp3");
 
         },
         beforeDestroy(){
