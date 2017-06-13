@@ -126,6 +126,10 @@ h5
   left: 2%
   top: 0
 
+  .nav_logo
+    height: 70px
+    mix-blend-mode: hard-light
+
 .tern
   position: absolute
   bottom: 20px
@@ -338,9 +342,15 @@ h5
     transform: translateX(0px) translateY(-50%)
 
 .page_index
-  +full
+  //+full
   +flex_center
+
+  width: 100vw
   height: 100vh
+  overflow: hidden
+  position: fixed
+  left: 0
+  top: 0
 
 .backeng
   +ab_center
@@ -373,8 +383,9 @@ h5
 
 
 .project_window
-  width: 100%
+  // width: 100%
   // position: absolute
+  width: 0
 
   z-index: 50
 
@@ -383,9 +394,10 @@ h5
 
 .projects
   padding: 0
-  width: 2500px
+  // width: 2500px
   white-space: nowrap
   cursor: pointer
+  position: relative
   +trans
 
 .project
@@ -407,7 +419,12 @@ h5
     +trans
     text-shadow: 0px 0px 30px rgba(black,0.6)
     
-  
+    // @media screen and (max-width: 800px)
+    //   left: 50%
+    //   top: initial
+    //   bottom: -50px
+    //   transform: translateX(-100%)
+
   .proj_image
     +size(490px,270px)
     margin-left: 300px
