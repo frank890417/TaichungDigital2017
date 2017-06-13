@@ -13,13 +13,18 @@ var timer = {init:
 0};
 var timer_limit = 5*60*1000; // 5 minutes interval
 var posts_valid = [];
-var query = ["高美濕地", "逢甲夜市", "東海大學", "夜景", ""];
+var query = ["高美濕地","心情","夜景","美食","步道","公園","逢甲夜市","東海大學","台中"];
 var queryIdx = 0;
 var queryLimit = 20;
+var detaching = false;
+var detaching_timer_min = 200; // ms
+var detaching_timer_max = 2000; // ms
+var detaching_timer;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   timer.init = millis();
+  timer.detach = millis();
   wind = createVector(0, 0, 0);
   wind_var = createVector(0.1, 0, 0);
   wind_vec = createVector(0, 0, 0);
@@ -32,16 +37,15 @@ function setup() {
   textFont("Noto Sans CJK TC Thin");
   textSize(24);
   textAlign(CENTER);
+
+  setInterval(loadWind, 1800000); // 30 min.=30*60*1000=1800000 ms
+  frameRate(30);
 }
 
 function draw() {
   background(0);
-  if (checkTimer('wind')) {
-    loadWind();
-    resetTimer('wind');
-  }
   wind_update();
-  
+
   // Keys to control wind factor
   if (keyIsDown(RIGHT_ARROW)) {
     wind_factor += 0.05;
@@ -171,30 +175,42 @@ function Dandelion(_x, _y, _l, _str) {
   this.y = _y;
   this.l = _l;
   this.str = _str;
-  this.len = min(this.str.length, 60);
+  this.len = min(this.str.length, 50);
   this.ds = [];
   this.detachIdx = 0;
+  this.mouseOverMe = false;
 
   for (var i=0; i<this.len; i++) {
-    if (this.str.charAt(i) != " ")
+    if (this.str.charAt(i) !== " ") {
       var aa = random(TWO_PI);
-    var xx = 20*cos(aa+HALF_PI), yy = 20*sin(aa+HALF_PI);
-    this.ds.push(new DandelionSeed(xx, yy, this.l, aa, this.str.charAt(i)));
+      var xx = this.l*0.25*cos(aa+HALF_PI), yy = this.l*0.25*sin(aa+HALF_PI);
+      this.ds.push(new DandelionSeed(xx, yy, this.l, aa, this.str.charAt(i)));
+    }
   }
 
   this.setStr = function(_str) {
     this.str = _str;
   }
+  
+  this.dsAllGone = function() {
+    return (this.detachIdx >= (this.len-1))? true : false;
+  }
 
   this.dsDetach = function() {
-    if (this.detachIdx < this.len) {
+    if (this.detachIdx <= (this.ds.length-1)) {
       this.ds[this.detachIdx].setFree();
       this.detachIdx++;
-      if (this.detachIdx >= this.len) detachIdx = this.len-1;
+      if (this.detachIdx > (this.ds.length-1)) this.detachIdx = this.ds.length-1;
     }
   }
 
   this.update = function() {
+    if (dist(mouseX, mouseY, this.x, this.y) <= this.l*1.25) {
+      this.mouseOverMe = true;
+      if (mouseIsPressed) this.dsDetach();
+    } else {
+      this.mouseOverMe = false;
+    }
   }
 
   this.display = function() {
@@ -203,10 +219,14 @@ function Dandelion(_x, _y, _l, _str) {
     strokeWeight(5);
     line(this.x, height, this.x, this.y);
     translate(this.x, this.y);
-    fill(0);
+    if (this.mouseOverMe) {
+      fill(120);
+    } else {
+      fill(0);
+    }
     stroke(255);
     strokeWeight(2);
-    ellipse(0, 0, 40, 40);
+    ellipse(0, 0, this.l*0.5, this.l*0.5);
     for (var i=0; i<this.ds.length; i++) {
       this.ds[i].update();
       this.ds[i].display();
@@ -279,10 +299,22 @@ function DandelionSeed(_x, _y, _l, _ang, _w) {
   }
 }
 
+function detachOnce() {
+  if (detaching) {
+    var i = int(random(danNum));
+    //if (dan[i].dsAllGone())
+    dan[i].dsDetach();
+    detaching_timer = setTimeout(detachOnce, random(detaching_timer_min, detaching_timer_max));
+  }
+}
+
 function keyTyped() {
   if (key === " ") {
-    for (var i=0; i<danNum; i++) {
-      dan[i].dsDetach();
+    detaching = !detaching;
+    if (detaching) {
+      detachOnce();
+    } else {
+      clearTimeout(detaching_timer);
     }
   }
   if (key === "r") {
@@ -298,25 +330,27 @@ function keyPressed() {
   var idx = queryIdx;
   if (keyCode == UP_ARROW) {
     queryIdx--;
+    if (queryIdx < 0) queryIdx = query.length - 1;
   }
   if (keyCode == DOWN_ARROW) {
     queryIdx++;
+    if (queryIdx > query.length-1) queryIdx = 0;
   }
-  queryIdx = constrain(queryIdx, 0, query.length-1);
+  //queryIdx = constrain(queryIdx, 0, query.length-1);
   if (idx != queryIdx) loadPost();
 }
 
 function infoPanel() {
-    if (infoON) {
+  if (infoON) {
     infoY=1;
     fill(180);
     textAlign(LEFT);
     textSize(12);
-    text("[SPACE] 釋放種子，[左/右] 風力強度, [上/下] 搜尋類別, [R] 產生新字雲", 10, (infoY++)*20);
+    text("[SPACE] 釋放種子，[左/右] 風力強度, [上/下] 主題, [R] 產生新字雲", 10, (infoY++)*20);
     text("主題: "+query[queryIdx], 10, (infoY++)*20);
     //text("FPS: "+round(frameRate()), 10, (infoY++)*20);
-    if (wind) text("風向: ("+nf(wind.x,0,2)+","+nf(wind.y,0,2)+")", 10, (infoY++)*20);
-    text("強度: "+nf(wind_factor,0,2), 10, (infoY++)*20);
+    if (wind) text("風向: ("+nf(wind.x, 0, 2)+","+nf(wind.y, 0, 2)+")", 10, (infoY++)*20);
+    text("強度: "+nf(wind_factor, 0, 2), 10, (infoY++)*20);
     if (posts_valid.length > 0) text("取自 "+posts_valid.length+" 篇貼文", 10, (infoY++)*20);
   }
 }
