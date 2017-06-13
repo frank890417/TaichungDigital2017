@@ -47,7 +47,7 @@
           computed_left(){
             return {
               //左距離＝偏移負的單格距離＊現在正在瀏覽的index
-              "left": (-500-this.span*this.now_id)+"px"
+              "left": (-550-this.span*this.now_id)+"px"
             };
           }
         }

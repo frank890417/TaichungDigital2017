@@ -12,7 +12,8 @@
         a(href="/project/dandelion_dcc/index.html" target="_blank" title="前往作品")
           img.cover(src="/img/page_dande.png")
         p (點擊圖片前往作品)<br><br>網路資訊的大宗，是個人的自我表現與抒發。持續在數位空間中流動的文字，有陳述、景緻和情緒，有個人、家人與朋友。本作品將特定臺中主題的文字雲，以蒲公英種子棉絮隨風飄動的樣貌呈現，是一種關於臺中的動態文字拼貼。 
-      
+        p ©黃致傑
+
 
 </template>
 
