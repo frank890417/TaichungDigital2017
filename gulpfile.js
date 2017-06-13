@@ -17,6 +17,7 @@ require('laravel-elixir-jade');
 elixir((mix) => {
     mix.sass('*.sass')
        .webpack([
+          './node_modules/babel-polyfill/dist/polyfill.js',
           'app.js'
         ],'public/js/app.js')
        .jade({
