@@ -804,7 +804,7 @@
             return {"background-image":"url("+url+")"}
           },
           embed_head(tag){
-            return "<iframe width='100%' height='600' src='https://www.youtube.com/embed/"+tag+"?autoplay=1&rel=0' frameborder='0' allowfullscreen></iframe>";
+            return "<iframe width='100%' height='600' src='https://www.youtube.com/embed/Xf0lvgPGYVQ?list=PLADMVlPbXG7VmEWNCgN0ZQcNtvEmpPhEt&autoplay=1&rel=0' frameborder='0' allowfullscreen></iframe>";
           },
           embed(url){
             return "<iframe width=\"100%\" height=\"450\" src=\"https://www.youtube.com/embed/"+url.split('/').slice(-1)+"?autoplay=1&rel=0\" frameborder=\"0\" allowfullscreen></iframe>";

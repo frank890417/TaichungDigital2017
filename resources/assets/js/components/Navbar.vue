@@ -1,7 +1,7 @@
 <template lang="jade">
   .leftbar
     router-link(to="/").header
-      img.nav_logo(src="/img/logo_web.jpg")
+      img.nav_logo(src="/img/iconlogoWF.png")
       // .line1 質感
       // .line2 臺中紀事
     .hamburger(@click="toggle_full_nav" ,:class="{open: full_nav_open}")
