@@ -1,6 +1,6 @@
 <template lang="jade">
   .leftbar
-    router-link(to="/").header
+    router-link(to="/index").header
       img.nav_logo(src="/img/iconlogoWF.png")
       // .line1 質感
       // .line2 臺中紀事

@@ -38,6 +38,7 @@ var Nav_full = Vue.component('Nav_full', require('./components/Nav_full.vue'));
 
 var page_index = Vue.component('page_index', require('./components/Page_Index.vue'));
 var page_about = Vue.component('page_about', require('./components/Page_About.vue'));
+var page_loading = Vue.component('page_loading', require('./components/Page_loading.vue'));
 
 var Project_StoryTeller = Vue.component('Project_StoryTeller', require('./components/Project_StoryTeller.vue'));
 var Project_FrameofMind = Vue.component('Project_FrameofMind', require('./components/Project_FrameofMind.vue'));
@@ -48,7 +49,8 @@ var Project_TimeMicroscope = Vue.component('Project_TimeMicroscope', require('./
 
 //vue router
 const routes = [
-  {path: '/',component: page_index },
+  {path: '/',component: page_loading },
+  {path: '/index',component: page_index },
   {path: '/about',component: page_about },
   {path: '/Project/StoryTeller',component: Project_StoryTeller },
   {path: '/Project/FrameofMind',component: Project_FrameofMind },
@@ -61,6 +63,7 @@ const router = new VueRouter({
   routes,
   mode: "history"
 });
+window.router=router
 // router.replace("/Project/StoryTeller");
 
 router.beforeEach((to, from, next) => {
