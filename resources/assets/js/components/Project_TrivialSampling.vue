@@ -8,8 +8,8 @@
     .right
       a(href="/project/trivial_sampling/index.html" target="_blank" title="前往作品")
         img.cover(src="/img/page_trivial.png")
+      p.cc_text ©侯君昊
       p (點擊圖片前往作品)<br><br>透過搜尋與取樣方法由社群網路擷取影像素材，根據色彩、材質、地理位置進行取樣，以取樣地圖形式呈現。由此，看似個人、隨意的日常取材，藉由取樣過程中主觀、聚焦、切割與轉換，以及地理、顏色等關聯性串連，可能呈現怎樣的臺中日常呢？
-      p ©侯君昊
 
 </template>
 

@@ -124,11 +124,82 @@ h5
 .leftbar
   position: fixed
   left: 2%
-  top: 0
+  top: 20px
+  width: 300px
+  color: white
+  z-index: 1000
 
   .nav_logo
     height: 55px
     mix-blend-mode: hard-light
+
+  .mute
+    position: absolute
+    top: 120px
+    left: 25px
+    cursor: pointer
+    img
+      transition: 0.5s
+      &.muting
+        opacity: 0.3
+    @media screen and (max-width: 1000px)
+      position: fixed
+      left: initial
+      right: 80px
+      top: 30px
+
+  .header
+    cursor: pointer
+    left: 20px
+    color: white
+    .line1
+      font-size: 34px
+      letter-spacing: 25px
+    .line2 
+      font-size: 13px
+      letter-spacing: 12px
+
+  .hamburger
+    +size(30px)
+    position: absolute
+    top: 70px
+    left: 25px
+    cursor: pointer
+    background-color: transparent
+
+    @media screen and (max-width: 1000px)
+      position: fixed
+      right: 30px
+      top: 30px
+      left: initial
+    &:after
+      content: ""
+      
+
+    .l1,.l2,.l3
+      
+      width: 100%
+      height: 2px
+      background-color: white
+      transform-origin: 50% 50%
+      +ab_center
+      +trans
+    .l1
+      transform: translate(-50%,10px)
+    .l2
+      // top: 10px
+      transform: translate(-50%,0px)
+    .l3
+      // top: 20px
+      transform: translate(-50%,-10px)
+    &.open
+      .l1
+        transform: translate(-50%,-50%) rotate(45deg)
+      .l2
+        transform: translate(-50%,-50%) rotate(-45deg)
+      .l3
+        transform: translate(-50%,-50%) rotate(45deg)
+
 
 .tern
   position: absolute
@@ -189,69 +260,6 @@ h5
     pointer-events: initial
 
 
-.leftbar
-  // border: solid 1px white
-  position: fixed
-  // left: 15%
-  top: 15px
-  width: 300px
-  // height: 100%
-  color: white
-  z-index: 1000
-
-  .header
-    cursor: pointer
-    left: 20px
-    color: white
-    .line1
-      font-size: 34px
-      letter-spacing: 25px
-    .line2 
-      font-size: 13px
-      letter-spacing: 12px
-
-  .hamburger
-    +size(40px)
-    position: absolute
-    top: 70px
-    left: 20px
-    cursor: pointer
-    background-color: transparent
-
-    @media screen and (max-width: 1000px)
-      position: fixed
-      right: 30px
-      top: 30px
-      left: initial
-    &:after
-      content: ""
-      
-
-    .l1,.l2,.l3
-      
-      width: 100%
-      height: 2px
-      background-color: white
-      transform-origin: 50% 50%
-      +ab_center
-      +trans
-    .l1
-      transform: translate(-50%,10px)
-    .l2
-      // top: 10px
-      transform: translate(-50%,0px)
-    .l3
-      // top: 20px
-      transform: translate(-50%,-10px)
-    &.open
-      .l1
-        transform: translate(-50%,-50%) rotate(45deg)
-      .l2
-        transform: translate(-50%,-50%) rotate(-45deg)
-      .l3
-        transform: translate(-50%,-50%) rotate(45deg)
-
-
 
 
 //----------------
@@ -268,9 +276,17 @@ h5
   padding-bottom: 150px
   margin-bottom: 150px
   overflow: hidden
+
+  .cc_text
+    opacity: 0.5
+    font-size: 14px
   .cover
     width: 100%
-    margin-bottom: 50px
+    margin-bottom: 40px
+    &+.cc_text
+      margin-top: -30px
+      margin-bottom: 30px
+
   .left,.right
     // height: 100%
 
@@ -299,6 +315,7 @@ h5
     // max-height: 80vh
     overflow: hidden
     padding-bottom: 80px
+
 
 
 
@@ -429,11 +446,11 @@ h5
     //   transform: translateX(-100%)
 
   .proj_image
-    +size(490px,270px)
+    +size(490px,320px)
     margin-left: 300px
     margin-right: 210px
     transform: translateX(100px)
-    background-size: 100% auto
+    background-size: 120% auto
     box-shadow: 0px 0px 30px rgba(black,0.3)
     background-position: center center
     +trans
@@ -442,8 +459,8 @@ h5
       transform: translateX(-10px) translateY(-53%)
     .proj_image
       // transform: translateX(-10px) translateY(-53%)
-      +size(500px,280px)
-      background-size: 105% auto
+      +size(500px,320px)
+      background-size: 125% auto
 
   &.cur_item
     animation: fadeIn 1.5s

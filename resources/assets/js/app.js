@@ -78,6 +78,7 @@ var store = new Vuex.Store({
   state: {
     full_nav_open: false,
     now_id: 0,
+    music_status: true,
     projects: [
       { 
         id: 0,
