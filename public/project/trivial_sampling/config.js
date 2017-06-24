@@ -1,4 +1,5 @@
-var categories = ["","美食","夜景","公園","景點","東海","逢甲","church","天空","sunset","彩繪","彩虹","眷村"];
+var categories = ["","美食","夜景","公園","景點","東海","逢甲",
+"日落","天空","街景","彩繪","彩虹","眷村"];
 var districtW=1610;
 var districtH=740;
 var districts=[

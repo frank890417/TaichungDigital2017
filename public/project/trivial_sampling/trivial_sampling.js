@@ -20,7 +20,7 @@ var timer_period = [60000, 5000];
 var mode = 1; // 0: city mode, 1: district mode
 var cat = 0; // Category #
 var limit = [100, 10]; // search limit
-var debug = false;
+var debug = true;
 var first_run = true;
 
 function setup() {
@@ -38,6 +38,7 @@ function setup() {
   }
   updateDistrictFrames();
   timer = millis();
+  renewCityImage();
 }
 
 function draw() {
@@ -61,17 +62,26 @@ function draw() {
 
   progressBar(millis()-timer, timer_period[mode]);
 
+    fill(80);
+    noStroke();
+text("[C] 全市更新，[D]逐區更新，[SPACE]移至下一區，[左/右]主題變更",10,20);
+
   if (debug) {
     fill(80);
     noStroke();
-    var txt = categories[cat]+'@';
+    var txt;
+    if (categories[cat] == "") {
+      txt = "不分主題"+'@';
+    } else {
+      txt = categories[cat]+'@';
+    }
     if (mode==0) {
       txt += "台中";
     } else {
       txt += districts[cur_district].name;
     }
-    text(txt, 10, 20);
-    text(msg, 10, 40);
+    text(txt, 10, 40);
+    text(msg, 10, 60);
     //text(round((millis()-timer)/100.0)/10, 10, 60);
   }
 }
@@ -81,8 +91,8 @@ function draw() {
 //
 function progressBar(val, range) {
   noStroke();
-  fill(255, 100);
-  rect(0, 0, width*val/range, 2);
+  fill(255, 0, 0, 180);
+  rect(0, 0, width*val/range, 3);
 }
 
 //***************************************
